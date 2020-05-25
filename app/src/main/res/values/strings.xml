@@ -12,4 +12,14 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit_title_hint">Title</string>
+    <string name="edit_description_hint">Description</string>
+    <string name="edit_button">Edit the task</string>
+    <string name="delete_button">Delte the task</string>
+    <string name="SaveButton">save</string>
+    <string name="instructions_heading">"No Task "</string>
+    <string name="instructions">Click + to add task</string>
+    <string name="edit_Time_hint">Pick Date And Time</string>
+    <string name="DateTime">22,May 2020</string>
+    <string name="PickDateAndTime">Pick Date And Time</string>
 </resources>

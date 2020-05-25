@@ -5,28 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MainActivityFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class MainActivityFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.fragment_main.*
+import java.util.*
+private const val TAG="MainActivityFragment"
+class MainActivityFragment : Fragment(), MyRecyclerViewAdapter.OnTaskClickListener {
+//    private val viewModel : MyTasksViewModel by activityViewModels()
+private val viewModel by lazy { ViewModelProvider(requireActivity()).get(MyTasksViewModel::class.java) }
+    private val mAdapter = MyRecyclerViewAdapter(null,this)
+    interface OnTaskEdit {
+        fun onTaskEdit(task: Task)
     }
 
     override fun onCreateView(
@@ -36,24 +27,30 @@ class MainActivityFragment : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MainActivityFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainActivityFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        viewModel.cursor.observe(this, Observer { cursor -> mAdapter.swapCursor(cursor)?.close() })
+        viewModel.cursor.observe(this, Observer{ cursor ->mAdapter.swapCursor(cursor)?.close()})
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        task_list.layoutManager=LinearLayoutManager(context)
+        task_list.adapter=mAdapter
+    }
+
+    override fun onEditClick(task: Task) {
+        (activity as OnTaskEdit?)?.onTaskEdit(task)
+    }
+
+    override fun onDeleteClick(task: Task) {
+viewModel.deleteTask(task.id)    }
+
+    override fun onTaskClick(task: Task) {
+        Toast.makeText(requireActivity()," ${task.name}",Toast.LENGTH_SHORT).show()
+        (activity as OnTaskEdit?)?.onTaskEdit(task)
+    }
+
 }
+
+

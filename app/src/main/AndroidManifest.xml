@@ -19,6 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.thakurnitin2684.mytasks.provider"
+            android:name="com.thakurnitin2684.mytasks.AppProvider"
+            android:exported="false"/>
+
     </application>
 
 </manifest>
