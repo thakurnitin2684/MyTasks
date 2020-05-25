@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
 import android.util.Log
 
+/**
+credits for code base : Tim Buchelka ,www.learnprogramming.academy
+ */
 private const val TAG = "AppProvider"
 const val CONTENT_AUTHORITY = "com.thakurnitin2684.mytasks.provider"
 private const val TASKS = 10

@@ -16,18 +16,16 @@ private const val TAG = "RecyclerViewAdapter"
 class TaskViewHolder( override val containerView: View) : RecyclerView.ViewHolder(containerView) ,LayoutContainer{
     var each_title: TextView = containerView.findViewById(R.id.each_name)
     var each_time: TextView = containerView.findViewById(R.id.each_time)
-    var each_edit : ImageView = containerView.findViewById(R.id.each_edit)
     var each_delete: ImageView = containerView.findViewById(R.id.each_delete)
     fun bind(task :Task,listener : MyRecyclerViewAdapter.OnTaskClickListener)
     {
         each_title.text = task.name
         each_time.text=task.time
-//        tli_delete.visibility=View.VISIBLE
-//        tli_edit.visibility=View.VISIBLE
 
-        each_edit.setOnClickListener{
-                listener.onEditClick(task)
-        }
+
+//        each_edit.setOnClickListener{
+//                listener.onEditClick(task)
+//        }
         each_delete.setOnClickListener{
                   listener.onDeleteClick(task)
         }

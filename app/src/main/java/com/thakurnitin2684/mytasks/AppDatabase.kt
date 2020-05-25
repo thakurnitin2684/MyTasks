@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
+/**
+credits for code base : Tim Buchelka ,www.learnprogramming.academy
+ */
 private const val TAG = "AppDatabase"
 private const val DATABASE_NAME = "mytasks.db"
 private const val DATABASE_VERSION = 1

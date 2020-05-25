@@ -2,8 +2,12 @@ package com.thakurnitin2684.mytasks
 
 import android.app.DatePickerDialog
 import android.app.DatePickerDialog.OnDateSetListener
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.TimePickerDialog
 import android.app.TimePickerDialog.OnTimeSetListener
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -11,6 +15,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import kotlinx.android.synthetic.main.edit_fragment.*
@@ -22,6 +28,9 @@ import java.util.*
 private const val TAG="AddEditFragment"
 private const val ARG_TASK = "task"
 var time = ""
+const val channelID = "channelID"
+const val channelName = "Channel Name"
+
 class AddEditFragment : Fragment() {
 
 
@@ -40,8 +49,9 @@ class AddEditFragment : Fragment() {
                     Editable.Factory.getInstance().newEditable(strtTask.name)
                 root.edit_Description.editText?.text =
                     Editable.Factory.getInstance().newEditable(strtTask.description)
-
+                time=strtTask.time
                tID=strtTask.id
+               root.edit_show_time.text=time
 
             }
         }
@@ -95,5 +105,13 @@ class AddEditFragment : Fragment() {
         ).show()
 
     }
+//   fun NotificationBuild(){
+//       var builder = NotificationCompat.Builder(requireContext(), channelID)
+//           .setSmallIcon(R.drawable.ic_launcher_foreground)
+//           .setContentTitle("textTitle")
+//           .setContentText("textContent")
+//           .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//       val notificationManager = NotificationManager
+//   }
 
 }

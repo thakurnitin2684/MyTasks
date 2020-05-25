@@ -12,7 +12,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="edit_title_hint">Title</string>
+    <string name="edit_title_hint">Title (required)</string>
     <string name="edit_description_hint">Description</string>
     <string name="edit_button">Edit the task</string>
     <string name="delete_button">Delte the task</string>
@@ -22,4 +22,9 @@
     <string name="edit_Time_hint">Pick Date And Time</string>
     <string name="DateTime">22,May 2020</string>
     <string name="PickDateAndTime">Pick Date And Time</string>
+    <string name="menu_aboutapp">About app</string>
+    <string name="about_copyright">Copyright © 2020 Nitin Thakur</string>
+    <string name="about_weblink">Source code available at https://github.com/thakurnitin2684/MyTasks</string>
+    <string name="about_email">For support or suggestion, email thakurnitin2684@gmail.com</string>
+    <string name="about_credits" >Icon derived from at <b>material.io</b></string>
 </resources>

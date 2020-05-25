@@ -23,6 +23,9 @@
             android:authorities="com.thakurnitin2684.mytasks.provider"
             android:name="com.thakurnitin2684.mytasks.AppProvider"
             android:exported="false"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
     </application>
 

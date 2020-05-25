@@ -47,7 +47,6 @@ private val viewModel by lazy { ViewModelProvider(requireActivity()).get(MyTasks
 viewModel.deleteTask(task.id)    }
 
     override fun onTaskClick(task: Task) {
-        Toast.makeText(requireActivity()," ${task.name}",Toast.LENGTH_SHORT).show()
         (activity as OnTaskEdit?)?.onTaskEdit(task)
     }
 
