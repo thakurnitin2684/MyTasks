@@ -5,15 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_main.*
-import java.util.*
 private const val TAG="MainActivityFragment"
 class MainActivityFragment : Fragment(), MyRecyclerViewAdapter.OnTaskClickListener {
-//    private val viewModel : MyTasksViewModel by activityViewModels()
 private val viewModel by lazy { ViewModelProvider(requireActivity()).get(MyTasksViewModel::class.java) }
     private val mAdapter = MyRecyclerViewAdapter(null,this)
     interface OnTaskEdit {
@@ -29,7 +26,6 @@ private val viewModel by lazy { ViewModelProvider(requireActivity()).get(MyTasks
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        viewModel.cursor.observe(this, Observer { cursor -> mAdapter.swapCursor(cursor)?.close() })
         viewModel.cursor.observe(this, Observer{ cursor ->mAdapter.swapCursor(cursor)?.close()})
     }
 

@@ -36,14 +36,13 @@ class MainActivity : AppCompatActivity(), MainActivityFragment.OnTaskEdit {
             setTheme(R.style.DarkTheme)
         }else{
           setTheme(R.style.AppTheme)
-//                    setSupportActionBar(toolbar)
         }
-//        setSupportActionBar(toolbar)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mTwoPane = resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
         val fragment = supportFragmentManager.findFragmentById(R.id.task_details_container)
-        if (fragment != null) {
+        if (fragment != null  ) {
             // there was an existing fragment to edit a task, make sure the panes are set correctly
             showEditPane()
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -73,9 +72,10 @@ class MainActivity : AppCompatActivity(), MainActivityFragment.OnTaskEdit {
     private fun removeEditPane(fragment: Fragment? = null) {
         Log.d(TAG, "removeEditPane called")
 
-            if (fragment != null) {
-                supportFragmentManager.beginTransaction().remove(fragment).commit()
-            }
+        for (fragment in supportFragmentManager.fragments) {
+            if(fragment!= mainFragment)
+                supportFragmentManager.beginTransaction().remove(fragment!!).commit()
+        }
 
         task_details_container.visibility = if (mTwoPane) View.INVISIBLE else View.GONE
         mainFragment.view?.visibility = View.VISIBLE
@@ -141,6 +141,7 @@ class MainActivity : AppCompatActivity(), MainActivityFragment.OnTaskEdit {
 
         if(darkFlag) {
             val builder = AlertDialog.Builder(this,R.style.MyDialogTheme)
+
             builder.setTitle(R.string.app_name)
             builder.setIcon(R.mipmap.ic_launcher)
             aboutDialog=builder.setView(messgView).create()

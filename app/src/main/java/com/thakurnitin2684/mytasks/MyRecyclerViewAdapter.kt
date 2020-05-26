@@ -22,10 +22,6 @@ class TaskViewHolder( override val containerView: View) : RecyclerView.ViewHolde
         each_title.text = task.name
         each_time.text=task.time
 
-
-//        each_edit.setOnClickListener{
-//                listener.onEditClick(task)
-//        }
         each_delete.setOnClickListener{
                   listener.onDeleteClick(task)
         }
@@ -54,7 +50,6 @@ class MyRecyclerViewAdapter( private var cursor: Cursor?,private val listener: O
             Log.d(TAG, "onBindViewHolder: providing instructions")
             holder.each_title.setText(R.string.instructions_heading)
             holder.each_time.setText(R.string.instructions)
-
         } else {
             if (!cursor.moveToPosition(position)) {
                 throw IllegalArgumentException("Couldn't move cursor to position $position")
