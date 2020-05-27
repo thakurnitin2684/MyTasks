@@ -65,9 +65,7 @@ class AppProvider : ContentProvider() {
             else -> throw IllegalArgumentException("Unknown URI: $uri")
         }
         val db = AppDatabase.getInstance(context!!).readableDatabase
-        val cursor =
-            queryBuilder.query(db, projection, selection, selectionArgs, null, null, sortOrder)
-        return cursor
+        return queryBuilder.query(db, projection, selection, selectionArgs, null, null, sortOrder)
     }
 
 

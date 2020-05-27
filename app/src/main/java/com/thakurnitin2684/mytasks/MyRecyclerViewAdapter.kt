@@ -12,37 +12,47 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
 import java.lang.IllegalArgumentException
 
+/**
+credits for code base : Tim Buchelka ,www.learnprogramming.academy
+ */
 private const val TAG = "RecyclerViewAdapter"
-class TaskViewHolder( override val containerView: View) : RecyclerView.ViewHolder(containerView) ,LayoutContainer{
+
+class TaskViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
+    LayoutContainer {
     var each_title: TextView = containerView.findViewById(R.id.each_name)
     var each_time: TextView = containerView.findViewById(R.id.each_time)
     var each_delete: ImageView = containerView.findViewById(R.id.each_delete)
-    fun bind(task :Task,listener : MyRecyclerViewAdapter.OnTaskClickListener)
-    {
+    fun bind(task: Task, listener: MyRecyclerViewAdapter.OnTaskClickListener) {
         each_title.text = task.name
-        each_time.text=task.time
+        each_time.text = task.time
 
-        each_delete.setOnClickListener{
-                  listener.onDeleteClick(task)
+        each_delete.setOnClickListener {
+            listener.onDeleteClick(task)
         }
-        containerView.setOnClickListener{
-              listener.onTaskClick(task)
+        containerView.setOnClickListener {
+            listener.onTaskClick(task)
         }
     }
 }
-class MyRecyclerViewAdapter( private var cursor: Cursor?,private val listener: OnTaskClickListener ) :
+
+class MyRecyclerViewAdapter(
+    private var cursor: Cursor?,
+    private val listener: OnTaskClickListener
+) :
     RecyclerView.Adapter<TaskViewHolder>() {
-    interface OnTaskClickListener{
-        fun onEditClick(task:Task)
-        fun onDeleteClick(task:Task)
-        fun onTaskClick(task:Task)
+    interface OnTaskClickListener {
+        fun onEditClick(task: Task)
+        fun onDeleteClick(task: Task)
+        fun onTaskClick(task: Task)
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         Log.d(TAG, "onCreateViewHolder : new view Requested")
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.each_task, parent, false)
         return TaskViewHolder(view)
     }
+
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         Log.d(TAG, "onBindViewHolder: starts")
         val cursor = cursor
@@ -62,7 +72,7 @@ class MyRecyclerViewAdapter( private var cursor: Cursor?,private val listener: O
             )
             //Remember that the id isn't set in the constructor
             task.id = cursor.getLong(cursor.getColumnIndex(TasksTable.Columns.ID))
-            holder.bind(task,listener)
+            holder.bind(task, listener)
 
 
         }
@@ -80,6 +90,7 @@ class MyRecyclerViewAdapter( private var cursor: Cursor?,private val listener: O
         Log.d(TAG, "returning $count")
         return count
     }
+
     fun swapCursor(newCursor: Cursor?): Cursor? {
         if (newCursor === cursor) {
             return null

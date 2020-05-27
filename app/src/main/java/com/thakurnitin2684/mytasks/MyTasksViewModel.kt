@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+
 /**
 credits for code base : Tim Buchelka ,www.learnprogramming.academy
  */
@@ -27,6 +28,7 @@ class MyTasksViewModel(application: Application) : AndroidViewModel(application)
     private val databaseCursor = MutableLiveData<Cursor>()
     val cursor: LiveData<Cursor>
         get() = databaseCursor
+
     init {
         Log.d(TAG, "TaskTimerViewModel: created")
         getApplication<Application>().contentResolver.registerContentObserver(
@@ -36,6 +38,7 @@ class MyTasksViewModel(application: Application) : AndroidViewModel(application)
         )
         loadTask()
     }
+
     private fun loadTask() {
         val projection = arrayOf(
             TasksTable.Columns.ID,
@@ -43,14 +46,15 @@ class MyTasksViewModel(application: Application) : AndroidViewModel(application)
             TasksTable.Columns.TASK_DESCRIPTION,
             TasksTable.Columns.TASK_TIME
         )
-                GlobalScope.launch {
+        GlobalScope.launch {
             val cursor = getApplication<Application>().contentResolver.query(
                 TasksTable.CONTENT_URI,
-                projection, null, null,null
+                projection, null, null, null
             )
             databaseCursor.postValue(cursor)
         }
     }
+
     fun saveTask(task: Task): Task {
         val values = ContentValues()
         if (task.name.isNotEmpty()) {
@@ -80,6 +84,7 @@ class MyTasksViewModel(application: Application) : AndroidViewModel(application)
         }
         return task
     }
+
     fun deleteTask(taskId: Long) {
         GlobalScope.launch {
             getApplication<Application>().contentResolver?.delete(
@@ -89,6 +94,7 @@ class MyTasksViewModel(application: Application) : AndroidViewModel(application)
             )
         }
     }
+
     override fun onCleared() {
         getApplication<Application>().contentResolver.unregisterContentObserver(contentObserver)
     }

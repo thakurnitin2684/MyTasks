@@ -5,9 +5,10 @@ package com.thakurnitin2684.mytasks
  * from https://medium.com/@BladeCoder/kotlin-singletons-with-argument-194ef06edd9e
  */
 
-open class SingletonHolder<out T: Any, in A>(creator: (A) -> T) {
+open class SingletonHolder<out T : Any, in A>(creator: (A) -> T) {
     private var creator: ((A) -> T)? = creator
-    @Volatile private var instance: T? = null
+    @Volatile
+    private var instance: T? = null
 
     fun getInstance(arg: A): T {
         val i = instance
