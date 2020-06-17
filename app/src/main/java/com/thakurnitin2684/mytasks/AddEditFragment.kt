@@ -18,6 +18,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.thakurnitin2684.mytasks.ReminderBroadcast.Companion.TASK_DES
+import com.thakurnitin2684.mytasks.ReminderBroadcast.Companion.TASK_NAME
 import kotlinx.android.synthetic.main.edit_fragment.*
 import kotlinx.android.synthetic.main.edit_fragment.view.*
 import java.text.SimpleDateFormat
@@ -72,11 +74,11 @@ class AddEditFragment : Fragment() {
             Log.d(TAG, "task : $task")
             if (timeBool) {
                 val intent = Intent(requireActivity(), ReminderBroadcast::class.java)
-                intent.putExtra(ReminderBroadcast.TASK_NAME, title)
-                intent.putExtra(ReminderBroadcast.TASK_DES, description)
+                intent.putExtra(TASK_NAME, title)
+                intent.putExtra(TASK_DES, description)
 
                 val pendingIntent = PendingIntent.getBroadcast(
-                    requireContext(), getCurrentRequestCode(
+                    context, getCurrentRequestCode(
                         context?.applicationContext
                     ), intent, 0
                 )

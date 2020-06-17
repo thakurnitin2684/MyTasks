@@ -27,7 +27,10 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         <receiver android:name= ".ReminderBroadcast" />
-
+        <service
+            android:name=".MyNewIntentService"
+            android:exported="false" >
+        </service>
     </application>
 
 </manifest>
