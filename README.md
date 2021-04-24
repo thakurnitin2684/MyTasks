@@ -2,9 +2,9 @@
 <img src="/ss/icon.png" align="left"
 width="160" hspace="10" vspace="10">
 
-A Tasks planner app. Promise it will be useful.<br> 
-Helps you to create a task and reminds you <br>
-about it through notification on the time set.
+A Minimal Tasks planner app. Promise it will be useful.<br> 
+Helps you to create tasks and reminds you <br>
+about them through notifications.
 
 <p align="left">
 <a href="https://play.google.com/store/apps/details?id=com.thakurnitin2684.mytasks">
