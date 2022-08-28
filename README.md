@@ -28,14 +28,17 @@ Has a responsive UI for Landscape orientation and For Tablet screens (achieved v
 
 [Download](https://play.google.com/store/apps/details?id=com.thakurnitin2684.mytasks) My Tasks from playstore.
 
+## Structure
+
+<img src="/ss/structure_mt.PNG" >
 
 ## Overview
   Used in app:
-  - Written in Kotlin
-  - Sqlite for storing tasks
+  - MVVM : This project follows android recommmended MVVM architecture, having seperate layers for data, Viewmodels and UI
+  - Room Db
+  - Hilt: uses hilt for dependency injection
+  - Kotlin
   - Fragments 
-  - Content provider
-  - ViewModel
   - BroadCast (for notifications)
   - Coroutines for accessing data from Database behind the ui
   - Recycler view
