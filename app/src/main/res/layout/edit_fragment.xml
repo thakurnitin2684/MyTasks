@@ -59,6 +59,16 @@
                    android:layout_gravity="end"
                    android:layout_marginTop="10dp"
                    android:text="@string/SaveButton" />
+
+               <TextView
+                   android:id="@+id/messageTextView"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:fontFamily="@font/montserrat"
+                   android:textSize="18sp"
+                   android:textStyle="bold"
+                   android:text="@string/title_required"
+                   android:visibility="gone"/>
           </LinearLayout>
 
           <androidx.constraintlayout.widget.ConstraintLayout

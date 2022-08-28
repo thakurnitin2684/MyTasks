@@ -3,15 +3,16 @@
     package="com.thakurnitin2684.mytasks">
 
     <application
+        android:name=".BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/new_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/new_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:name=".ui.view.MainActivity"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,18 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <provider
-            android:authorities="com.thakurnitin2684.mytasks.provider"
-            android:name="com.thakurnitin2684.mytasks.AppProvider"
-            android:exported="false"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
         <receiver android:name= ".ReminderBroadcast" />
-        <service
-            android:name=".MyNewIntentService"
-            android:exported="false" >
-        </service>
+
+
     </application>
 
 </manifest>

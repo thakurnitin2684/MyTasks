@@ -27,4 +27,9 @@
     <string name="about_weblink">Source code available at https://github.com/thakurnitin2684/MyTasks</string>
     <string name="about_email">For support or suggestion, email thakurnitin2684@gmail.com</string>
     <string name="about_credits">Icons derived from at <b>material.io</b></string>
+    <string name="success_update">Task Updated</string>
+    <string name="success_save">Task Saved!</string>
+    <string name="title_required">Title Required!!</string>
+    <string name="no_tasks">No Tasks !</string>
+    <string name="click_button_to_add_tasks">Click + button to add tasks</string>
 </resources>

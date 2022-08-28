@@ -5,8 +5,10 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.preference.PreferenceManager
 import androidx.core.app.NotificationCompat
+import com.thakurnitin2684.mytasks.ui.view.MainActivity
 
 
 class ReminderBroadcast : BroadcastReceiver() {
@@ -17,19 +19,32 @@ class ReminderBroadcast : BroadcastReceiver() {
         val bndl = intent?.extras
         val taskName = bndl?.get(TASK_NAME)
         val taskDes = bndl?.get(TASK_DES)
-        val pending = PendingIntent.getActivity(
-            context.applicationContext,
-            0,
-            Intent(context.applicationContext, MainActivity::class.java),
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
+
+
+        val pending = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            PendingIntent.getActivity(
+                context.applicationContext,
+                0,
+                Intent(context.applicationContext, MainActivity::class.java),
+                PendingIntent.FLAG_MUTABLE
+            )
+        } else {
+            PendingIntent.getActivity(
+                context.applicationContext,
+                0,
+                Intent(context.applicationContext, MainActivity::class.java),
+                PendingIntent.FLAG_ONE_SHOT
+            )
+        }
+
+
         builder.setContentIntent(pending)
             .setContentTitle(taskName as CharSequence?)
             .setStyle(
                 NotificationCompat.BigTextStyle()
                     .bigText(taskDes as CharSequence?)
             )
-        builder.setSmallIcon(R.drawable.ic_launcher_foreground)
+        builder.setSmallIcon(R.mipmap.new_icon)
         builder.priority = NotificationCompat.PRIORITY_DEFAULT
 
         notificationManager.notify(
@@ -52,7 +67,7 @@ class ReminderBroadcast : BroadcastReceiver() {
             //If reaches the limit reset to lower limit..
             editor.putInt("currentNotificationTokenId", NOTIFICATION_ID_LOWER_LIMIT)
         }
-        editor.commit()
+        editor.apply()
         return currentTokenId
     }
 
