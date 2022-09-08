@@ -29,7 +29,7 @@ Has a responsive UI for Landscape orientation and For Tablet screens (achieved v
 [Download](https://play.google.com/store/apps/details?id=com.thakurnitin2684.mytasks) My Tasks from playstore.
 
 ## Structure
-
+ - <strong> MVVM with ROOM DB </strong>
 <img src="/ss/structure_mt.PNG" >
 
 ## Overview
